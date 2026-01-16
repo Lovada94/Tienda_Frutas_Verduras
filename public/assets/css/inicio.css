@@ -3,3 +3,40 @@
     width: auto;
     border-radius: 10px;
 }
+
+/* Ancho de los sidebars */
+.sidebar-left,
+.sidebar-right {
+    width: 280px;
+}
+
+/* Para que el contenido central quede centrado “en la pantalla completa”
+   aunque haya 2 sidebars a los lados */
+.main-with-sidebars {
+    padding-left: 280px;
+    padding-right: 280px;
+}
+
+/* Sticky sidebars (opcional pero queda brutal) */
+.sticky-side {
+    position: sticky;
+    top: 80px;
+    /* ajusta si tu navbar es más alto */
+}
+
+/* Responsive: en pantallas pequeñas los sidebars se apilan arriba/abajo */
+
+@media (max-width: 1650px) {
+
+    .sidebar-left,
+    .sidebar-right {
+        display: none !important;
+    }
+}
+
+@media (max-width: 2100px) {
+    .main-with-sidebars {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}

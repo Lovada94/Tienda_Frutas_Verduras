@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\FrutasModel;
 use App\Models\VerdurasModel;
 use App\Models\EnvasadosModel;
-use App\Models\CategoriasModel;
+use App\Models\RandomModel;
 
 class Inicio extends BaseController
 {
@@ -14,12 +14,14 @@ class Inicio extends BaseController
         $modelFrutas = model(FrutasModel::class);
         $modelVerduras = model(VerdurasModel::class);
         $modelEnvasados = model(EnvasadosModel::class);
+        $randomM = model(RandomModel::class);
 
         $data = [
             'title' => 'BioEssential',
             'frutas' => $modelFrutas->getFrutasMasVendidas(),
             'verduras' => $modelVerduras->getVerdurasMasVendidas(),
             'envasados' => $modelEnvasados->getEnvasadosMasVendidos(),
+            'random'    => $randomM->getRandomProduct(),
         ];
 
         return view('frontend/templates/navbar', $data)
