@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <meta name="theme-color" content="#712cf9" />
   <link href="<?= base_url('assets/css/inicio.css') ?>" rel="stylesheet" />
+  <link href="<?= base_url('assets/css/sign-in.css') ?>" rel="stylesheet" />
 
   <title>Final CodeIgniter</title>
   
@@ -62,6 +63,7 @@
               <?php if (!$session->has('user_id')): ?>
                 <li class="nav-item">
                   <a class="btn btn-light" href="<?= base_url('login') ?>">Login</a>
+                  <a class="btn btn-outline-light" href="<?= base_url('registro') ?>">Regístrate</a>
                 </li>
               <?php else: ?>
                 <li class="nav-item">
