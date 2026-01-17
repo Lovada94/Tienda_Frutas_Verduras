@@ -24,10 +24,13 @@ class VerdurasModel extends Model
         return $sql;
     }
 
-    public function getVerduras()
+    public function getVerduras(string $sort = 'nombre', string $dir = 'asc')
     {
+        $dir = strtolower($dir) === 'desc' ? 'DESC' : 'ASC';
+
         $sql = $this->select('verduras.*, categorias.categoria');
         $sql = $this->join('categorias', 'verduras.id_categoria = categorias.id_categoria');
+        $sql = $this->orderBy($sort, $dir);
         $sql = $this->findAll();
         return $sql;
     }

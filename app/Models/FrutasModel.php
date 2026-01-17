@@ -24,10 +24,13 @@ class FrutasModel extends Model
         return $sql;
     }
 
-    public function getFrutas()
+    public function getFrutas(string $sort = 'nombre', string $dir = 'asc')
     {
+        $dir = strtolower($dir) === 'desc' ? 'DESC' : 'ASC';
+
         $sql = $this->select('frutas.*, categorias.categoria');
         $sql = $this->join('categorias', 'frutas.id_categoria = categorias.id_categoria');
+        $sql = $this->orderBy($sort, $dir);
         $sql = $this->findAll();
         return $sql;
     }

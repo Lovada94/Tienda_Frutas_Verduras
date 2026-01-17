@@ -24,10 +24,13 @@ class EnvasadosModel extends Model
         return $sql;
     }
 
-    public function getEnvasados()
+    public function getEnvasados(string $sort = 'nombre', string $dir = 'asc')
     {
+        $dir = strtolower($dir) === 'desc' ? 'DESC' : 'ASC';
+
         $sql = $this->select('envasados.*, categorias.categoria');
         $sql = $this->join('categorias', 'envasados.id_categoria = categorias.id_categoria');
+        $sql = $this->orderBy($sort, $dir);
         $sql = $this->findAll();
         return $sql;
     }

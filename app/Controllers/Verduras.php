@@ -10,9 +10,16 @@ class Verduras extends BaseController
     {
         $model = model(VerdurasModel::class);
 
+        $sort = $this->request->getGet('sort') ?? 'nombre';
+        $dir  = strtolower($this->request->getGet('dir') ?? 'asc');
+
+        $allowedSort = ['nombre', 'precio', 'n_ventas'];
+        if (!in_array($sort, $allowedSort, true)) $sort = 'nombre';
+        if (!in_array($dir, ['asc', 'desc'], true)) $dir = 'asc';
+
         $data = [
             'title' => 'Toas Nuestras Verduras',
-            'verduras' => $model->getVerduras(),
+            'verduras' => $model->getVerduras($sort, $dir),
         ];
 
         return view('frontend/templates/navbar', $data)

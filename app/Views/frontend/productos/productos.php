@@ -108,27 +108,19 @@
     </main>
 
     <!-- SIDEBAR DERECHA -->
+    <?php
+    $base = $categoriaActiva ? base_url('productos/' . $categoriaActiva) : base_url('productos');
+    ?>
     <aside class="flex-shrink-0 bg-body-tertiary border-start p-4 sidebar-right">
         <div class="sticky-side">
-
             <h3 class="mb-3">Ordena</h3>
             <hr>
-
             <ul class="nav nav-pills flex-column gap-2">
-                <li>
-                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis">Nombre</a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis" aria-current="page">Precio Ascendente</a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis" aria-current="page">Precio Descendente</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis">Nº de Ventas</a>
-                </li>
+                <li><a href="<?= $base ?>?sort=nombre&dir=asc" class="nav-link link-body-emphasis">Nombre</a></li>
+                <li><a href="<?= $base ?>?sort=precio&dir=asc" class="nav-link link-body-emphasis">Precio Ascendente</a></li>
+                <li><a href="<?= $base ?>?sort=precio&dir=desc" class="nav-link link-body-emphasis">Precio Descendente</a></li>
+                <li><a href="<?= $base ?>?sort=n_ventas&dir=desc" class="nav-link link-body-emphasis">Nº de Ventas</a></li>
             </ul>
-
         </div>
     </aside>
 

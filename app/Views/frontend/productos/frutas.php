@@ -114,51 +114,14 @@
     <!-- SIDEBAR DERECHA -->
     <aside class="flex-shrink-0 bg-body-tertiary border-start p-4 sidebar-right">
         <div class="sticky-side">
-
-            <h5 class="mb-3 text-capitalize text-end">Nuestros productos</h5>
-
-            <?php if (!empty($random)): ?>
-                <div class="card shadow-sm">
-                    <?php
-                    // Si el random puede venir de frutas/verduras/envasados con carpetas distintas:
-                    $imgPath = 'assets/img/fruta_verdura/' . ($random['imagen'] ?? '');
-                    if (!empty($random['tipo']) && $random['tipo'] === 'envasados') {
-                        $imgPath = 'assets/img/envasados/' . ($random['imagen'] ?? '');
-                    }
-                    ?>
-
-                    <img
-                        class="card-img-top"
-                        src="<?= base_url($imgPath) ?>"
-                        alt="<?= esc($random['nombre'] ?? 'Producto') ?>"
-                        style="height: 180px; object-fit: cover;">
-
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div class="me-2">
-                                <div class="fw-semibold text-capitalize">
-                                    <?= esc($random['nombre'] ?? '-') ?>
-                                </div>
-                            </div>
-
-                            <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill">
-                                <?= esc($random['precio'] ?? '-') ?> €
-                            </span>
-                        </div>
-
-                        <div class="d-grid mt-3">
-                            <a class="btn btn-outline-success btn-sm" href="<?= base_url('productos') ?>">
-                                Ver <?= esc($random['categoria']) ?>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            <?php else: ?>
-                <div class="alert alert-light border mb-0">
-                    No hay producto random todavía.
-                </div>
-            <?php endif; ?>
-
+            <h3 class="mb-3">Ordena</h3>
+            <hr>
+            <ul class="nav nav-pills flex-column gap-2">
+                <li><a href="<?= base_url('frutas') ?>?sort=nombre&dir=asc" class="nav-link link-body-emphasis">Nombre</a></li>
+                <li><a href="<?= base_url('frutas') ?>?sort=precio&dir=asc" class="nav-link link-body-emphasis">Precio Ascendente</a></li>
+                <li><a href="<?= base_url('frutas') ?>?sort=precio&dir=desc" class="nav-link link-body-emphasis">Precio Descendente</a></li>
+                <li><a href="<?= base_url('frutas') ?>?sort=n_ventas&dir=desc" class="nav-link link-body-emphasis">Nº de Ventas</a></li>
+            </ul>
         </div>
     </aside>
 
