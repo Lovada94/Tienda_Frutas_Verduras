@@ -6,18 +6,9 @@ use CodeIgniter\Model;
 
 class ProductosModel extends Model
 {
-    /**
-     * @param false|string $slug
-     *
-     * @return array|null
-     */
-
-
-    public function getProductos()
+    private function peticionSql(): string
     {
-        $db = db_connect();
-
-        $sql = "
+        return "
             SELECT
                 'fruta' AS tipo,
                 f.id_fruta      AS id_producto,
@@ -61,7 +52,27 @@ class ProductosModel extends Model
             FROM envasados e
             JOIN categorias c ON c.id_categoria = e.id_categoria
         ";
+    }
 
+    public function getProductos(): array
+    {
+        $db = db_connect();
+        $sql = $this->peticionSql();
         return $db->query($sql)->getResultArray();
+    }
+
+    public function getProductosPorCategoria($categoria): array
+    {
+        $db = db_connect();
+
+        $sql = "
+            SELECT * FROM (
+                {$this->peticionSql()}
+            ) t
+            WHERE LOWER(t.categoria) = LOWER(?)
+            ORDER BY t.n_ventas DESC
+        ";
+
+        return $db->query($sql, [$categoria])->getResultArray();
     }
 }

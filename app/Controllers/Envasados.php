@@ -11,8 +11,8 @@ class Envasados extends BaseController
         $model = model(EnvasadosModel::class);
 
         $data = [
-            'title' => 'BioEssential',
-            'frutas' => $model->getEnvasados(),
+            'title' => 'Todas Nuestros Envasados',
+            'envasados' => $model->getEnvasados(),
         ];
 
         return view('frontend/templates/navbar', $data)

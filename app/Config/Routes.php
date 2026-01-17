@@ -14,6 +14,7 @@ use App\Controllers\Verduras;
 $routes->get('/', [Inicio::class, 'index']);
 
 $routes->get('/productos', [Productos::class, 'productos']);
+$routes->get('/productos/(:segment)', [Productos::class, 'productos']);
 
 $routes->get('/frutas', [Frutas::class, 'frutas']);
 

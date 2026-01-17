@@ -1,31 +1,22 @@
-<?php
-
-/** @var array $frutas, $verduras, $envasados, $random */ ?>
-
 <div class="d-flex">
 
     <!-- SIDEBAR IZQUIERDA -->
     <aside class="flex-shrink-0 bg-body-tertiary border-end p-4 sidebar-left">
         <div class="sticky-side">
-            <h3 class="mb-3">Navega</h3>
+            <h3 class="mb-3">Filtra</h3>
             <hr>
 
             <ul class="nav nav-pills flex-column gap-2">
                 <li class="nav-item">
-                    <a href="<?= base_url('/') ?>" class="nav-link active" aria-current="page">Home</a>
+                    <a href="<?= base_url('productos/') ?>" class="nav-link link-body-emphasis" aria-current="page">Todos los Productos</a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('productos') ?>" class="nav-link link-body-emphasis" aria-current="page">Productos</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('frutas') ?>" class="nav-link link-body-emphasis">Frutas</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('verduras') ?>" class="nav-link link-body-emphasis">Verduras</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('envasados') ?>" class="nav-link link-body-emphasis">Envasados</a>
-                </li>
+                <?php if ($categorias !== []): ?>
+                    <?php foreach ($categorias as $categoria_item): ?>
+                        <li class="nav-item">
+                            <a href="<?= base_url('productos/' . $categoria_item['categoria']) ?>" class="nav-link link-body-emphasis" aria-current="page"><?= $categoria_item['categoria'] ?></a>
+                        </li>
+                    <?php endforeach ?>
+                <?php endif ?>
             </ul>
         </div>
     </aside>
@@ -80,7 +71,7 @@
                             <div class="modal-dialog modal-lg modal-dialog-centered aling-items-center">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="<?= esc($modalId) ?>"><?= esc($producto['nombre'] ?? 'Producto') ?>"</h1>
+                                        <h1 class="modal-title fs-5 text-center" id="<?= esc($modalId) ?>"><?= esc($producto['nombre'] ?? 'Producto') ?></h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -94,9 +85,9 @@
                                             </div>
                                             <div class="col-6">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item"><?= esc($producto['categoria']) ?></li>
+                                                    <li class="list-group-item">Categoria: <?= esc($producto['categoria']) ?></li>
                                                     <li class="list-group-item">Precio: <?= esc($producto['precio']) ?> €</li>
-                                                    <li class="list-group-item"><?= esc($producto['n_ventas']) ?></li>
+                                                    <li class="list-group-item">Nº de ventas: <?= esc($producto['n_ventas']) ?></li>
                                                     <li class="list-group-item">Fecha adquisición: <?= esc($producto['fecha_adq']) ?></li>
                                                     <li class="list-group-item">Fecha caducidad: <?= esc($producto['fecha_cad'] ?? 'Producto fresco') ?></li>
                                                 </ul>
@@ -120,49 +111,23 @@
     <aside class="flex-shrink-0 bg-body-tertiary border-start p-4 sidebar-right">
         <div class="sticky-side">
 
-            <h5 class="mb-3 text-capitalize text-end">Nuestros productos</h5>
+            <h3 class="mb-3">Ordena</h3>
+            <hr>
 
-            <?php if (!empty($random)): ?>
-                <div class="card shadow-sm">
-                    <?php
-                    // Si el random puede venir de frutas/verduras/envasados con carpetas distintas:
-                    $imgPath = 'assets/img/fruta_verdura/' . ($random['imagen'] ?? '');
-                    if (!empty($random['tipo']) && $random['tipo'] === 'envasados') {
-                        $imgPath = 'assets/img/envasados/' . ($random['imagen'] ?? '');
-                    }
-                    ?>
-
-                    <img
-                        class="card-img-top"
-                        src="<?= base_url($imgPath) ?>"
-                        alt="<?= esc($random['nombre'] ?? 'Producto') ?>"
-                        style="height: 180px; object-fit: cover;">
-
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div class="me-2">
-                                <div class="fw-semibold text-capitalize">
-                                    <?= esc($random['nombre'] ?? '-') ?>
-                                </div>
-                            </div>
-
-                            <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill">
-                                <?= esc($random['precio'] ?? '-') ?> €
-                            </span>
-                        </div>
-
-                        <div class="d-grid mt-3">
-                            <a class="btn btn-outline-success btn-sm" href="<?= base_url('productos') ?>">
-                                Ver <?= esc($random['categoria']) ?>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            <?php else: ?>
-                <div class="alert alert-light border mb-0">
-                    No hay producto random todavía.
-                </div>
-            <?php endif; ?>
+            <ul class="nav nav-pills flex-column gap-2">
+                <li>
+                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis">Nombre</a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis" aria-current="page">Precio Ascendente</a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis" aria-current="page">Precio Descendente</a>
+                </li>
+                <li>
+                    <a href="<?= base_url('/productos') ?>" class="nav-link link-body-emphasis">Nº de Ventas</a>
+                </li>
+            </ul>
 
         </div>
     </aside>

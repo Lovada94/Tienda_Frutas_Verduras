@@ -11,7 +11,7 @@ class Frutas extends BaseController
         $model = model(FrutasModel::class);
 
         $data = [
-            'title' => 'BioEssential',
+            'title' => 'Todas Nuestras Frutas',
             'frutas' => $model->getFrutas(),
         ];
 

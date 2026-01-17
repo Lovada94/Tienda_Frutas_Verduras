@@ -11,8 +11,8 @@ class Verduras extends BaseController
         $model = model(VerdurasModel::class);
 
         $data = [
-            'title' => 'BioEssential',
-            'frutas' => $model->getVerduras(),
+            'title' => 'Toas Nuestras Verduras',
+            'verduras' => $model->getVerduras(),
         ];
 
         return view('frontend/templates/navbar', $data)
