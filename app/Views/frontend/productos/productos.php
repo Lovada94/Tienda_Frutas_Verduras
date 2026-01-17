@@ -40,7 +40,9 @@
                         <div class="col">
                             <div class="card shadow-sm h-100">
                                 <?php
-                                // Si el random puede venir de frutas/verduras/envasados con carpetas distintas:
+                                // ID unico para el modal
+                                $modalId = 'modalProducto_' . ($producto['tipo'] ?? 'x') . '_' . ($producto['id_producto'] ?? uniqid());
+
                                 $imgPath = 'assets/img/fruta_verdura/' . ($producto['imagen'] ?? '');
                                 if (!empty($producto['tipo']) && $producto['tipo'] === 'envasados') {
                                     $imgPath = 'assets/img/envasados/' . ($producto['imagen'] ?? '');
@@ -60,16 +62,50 @@
                                     <div class="card-footer">
                                         <div class="mt-auto d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-success" href="<?= base_url('productos/frutas') ?>">
+                                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#<?= esc($modalId) ?>"">
                                                     Ampliar
-                                                </a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
+                                                </button>
+                                                <button type=" button" class="btn btn-sm btn-outline-secondary">Comprar</button>
                                             </div>
 
                                             <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill">
                                                 <?= esc($producto['precio']) ?> €
                                             </span>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="<?= esc($modalId) ?>" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered aling-items-center">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="<?= esc($modalId) ?>"><?= esc($producto['nombre'] ?? 'Producto') ?>"</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <img
+                                                    class="img-fluid rounded shadow-sm"
+                                                    src="<?= base_url($imgPath) ?>"
+                                                    alt="<?= esc($producto['nombre'] ?? 'Producto') ?>"
+                                                    style="height: 250px; object-fit: cover;">
+                                            </div>
+                                            <div class="col-6">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><?= esc($producto['categoria']) ?></li>
+                                                    <li class="list-group-item">Precio: <?= esc($producto['precio']) ?> €</li>
+                                                    <li class="list-group-item"><?= esc($producto['n_ventas']) ?></li>
+                                                    <li class="list-group-item">Fecha adquisición: <?= esc($producto['fecha_adq']) ?></li>
+                                                    <li class="list-group-item">Fecha caducidad: <?= esc($producto['fecha_cad'] ?? 'Producto fresco') ?></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary">Comprar</button>
                                     </div>
                                 </div>
                             </div>

@@ -15,7 +15,6 @@ class ProductosModel extends Model
 
     public function getProductos()
     {
-
         $db = db_connect();
 
         $sql = "
@@ -26,6 +25,8 @@ class ProductosModel extends Model
                 f.precio,
                 f.imagen,
                 f.n_ventas,
+                f.fecha_adq,
+                NULL            AS fecha_cad,
                 c.categoria
             FROM frutas f
             JOIN categorias c ON c.id_categoria = f.id_categoria
@@ -39,6 +40,8 @@ class ProductosModel extends Model
                 v.precio,
                 v.imagen,
                 v.n_ventas,
+                v.fecha_adq,
+                NULL            AS fecha_cad,
                 c.categoria
             FROM verduras v
             JOIN categorias c ON c.id_categoria = v.id_categoria
@@ -52,10 +55,11 @@ class ProductosModel extends Model
                 e.precio,
                 e.imagen,
                 e.n_ventas,
+                e.fecha_adq,
+                e.fecha_cad     AS fecha_cad,
                 c.categoria
             FROM envasados e
             JOIN categorias c ON c.id_categoria = e.id_categoria
-
         ";
 
         return $db->query($sql)->getResultArray();
