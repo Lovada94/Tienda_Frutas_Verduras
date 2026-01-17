@@ -15,7 +15,7 @@
                     <a href="<?= base_url('/') ?>" class="nav-link active" aria-current="page">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('productos') ?>" class="nav-link link-body-emphasis" aria-current="page">Productos</a>
+                    <a href="<?= base_url('productos') ?>" class="nav-link link-body-emphasis">Productos</a>
                 </li>
                 <li>
                     <a href="<?= base_url('frutas') ?>" class="nav-link link-body-emphasis">Frutas</a>
@@ -76,7 +76,8 @@
                                         <?= esc($fruta['nombre']) ?>
                                     </h5>
 
-                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <div class="card-footer">
+                                        <div class="mt-auto d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a class="btn btn-sm btn-outline-success" href="<?= base_url('productos/frutas') ?>">
                                                 Ver <?= esc($fruta['categoria'] ?? 'Frutas') ?>
@@ -87,6 +88,7 @@
                                         <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill">
                                             <?= esc($fruta['precio']) ?> €
                                         </span>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +118,8 @@
                                         <?= esc($verdura['nombre']) ?>
                                     </h5>
 
-                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <div class="card-footer">
+                                        <div class="mt-auto d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a class="btn btn-sm btn-outline-success" href="<?= base_url('productos/verduras') ?>">
                                                 Ver <?= esc($verdura['categoria'] ?? 'Verduras') ?>
@@ -127,6 +130,7 @@
                                         <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill">
                                             <?= esc($verdura['precio']) ?> €
                                         </span>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +159,8 @@
                                     <h5 class="card-title text-center text-capitalize mb-3">
                                         <?= esc($envasado['nombre']) ?>
                                     </h5>
-
+                                </div>
+                                <div class="card-footer">
                                     <div class="mt-auto d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a class="btn btn-sm btn-outline-success" href="<?= base_url('productos/envasados') ?>">

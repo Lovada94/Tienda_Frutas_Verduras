@@ -23,4 +23,12 @@ class EnvasadosModel extends Model
         $sql = $this->findAll(4);
         return $sql;
     }
+
+    public function getEnvasados()
+    {
+        $sql = $this->select('envasados.*, categorias.categoria');
+        $sql = $this->join('categorias', 'envasados.id_categoria = categorias.id_categoria');
+        $sql = $this->findAll();
+        return $sql;
+    }
 }

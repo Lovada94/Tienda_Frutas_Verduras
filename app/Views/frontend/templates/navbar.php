@@ -33,10 +33,19 @@
           <div class="buscador">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: '/') ?>">Maravillas</a>
+                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: '/') ?>">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: 'curiosities') ?>">Curiosidades</a>
+                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: 'productos') ?>">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: 'frutas') ?>">Frutas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: 'verduras') ?>">Verduras</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<?= base_url(relativePath: 'envasados') ?>">Envasados</a>
               </li>
               <?php if ($session->has('user_id')): ?>
                 <li class="nav-item">
